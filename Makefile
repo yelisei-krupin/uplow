@@ -1,16 +1,32 @@
-# O'zgaruvchilar
 CC = gcc
-CFLAGS = -Iinclude
-SRC = src/uplow.c example/main.c
-TARGET = build/result
+CFLAGS = -Iinclude -fPIC
+SRC = src/uplow.c
+OBJ = build/uplow.o
+LIB = build/libuplow.a
+PREFIX = /usr/local
+INCDIR = $(PREFIX)/include
+LIBDIR = $(PREFIX)/lib
 
-# Standart qoida (shunchaki 'make' deb yozganda ishlaydi)
-all: $(TARGET)
+all: $(LIB)
 
-# Build papkasini yaratish va dasturni kompilyatsiya qilish
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+$(OBJ): $(SRC)
+	@mkdir -p build
+	$(CC) $(CFLAGS) -c src/uplow.c -o $(OBJ)
 
-# Tozalash qoidasi (make clean)
+$(LIB): $(OBJ)
+	ar rcs $(LIB) $(OBJ)
+install: $(LIB)
+	install -d $(INCDIR)
+	install -m 644 include/uplow.h $(INCDIR)/
+	install -d $(LIBDIR)
+	install -m 644 $(LIB) $(LIBDIR)/
+	@echo "library successfully created! fucked out!"
+
+# O'chirish
+uninstall:
+	rm -f $(INCDIR)/uplow.h
+	rm -f $(LIBDIR)/libuplow.a
+	@echo "library fucking deleted"
+
 clean:
 	rm -rf build
