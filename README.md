@@ -1,6 +1,3 @@
-Mana sizga GitHub yoki boshqa platformalar uchun tayyor **README.md** kodi. Buni to'liqligicha nusxalab, loyihangizdagi `README.md` fayliga joylashtirishingiz mumkin:
-
-```markdown
 # UpLow Library
 
 A lightweight and simple C library for character case manipulation. This library provides basic functions to check character cases and convert them between uppercase and lowercase without relying heavily on complex standard libraries.
@@ -105,11 +102,3 @@ gcc example.c -luplow -o my_app
 ## 📝 License
 
 This project is open-source. Feel free to use and modify it!
-
-```
-
-Kodingizdagi mantiq bo'yicha bir kichik eslatma: `to_lower` va `to_upper` funksiyalarida agar harf massivdan topilmasa, kiritilgan belgining o'zini (`return c;`) qaytarishni unutmang, aks holda funksiya tasodifiy (garbage) qiymat qaytarishi mumkin. 
-
-Loyihangizni GitHub-ga yuklashga tayyormisiz?
-
-```
